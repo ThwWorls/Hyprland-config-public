@@ -1,2 +1,10 @@
 assets/
 .cursor/
+*.env
+*.env.*
+*.pem
+*.key
+*credentials*
+*secret*
+*.log
+.DS_Store
