@@ -1,0 +1,66 @@
+[global]
+    monitor = 0
+    follow = mouse
+    width = 320
+    height = (0, 300)
+    origin = top-right
+    offset = 12x12
+    notification_limit = 5
+
+    progress_bar = true
+    progress_bar_height = 8
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 200
+    progress_bar_max_width = 300
+    progress_bar_corner_radius = 4
+
+    indicate_hidden = yes
+    separator_height = 1
+    padding = 14
+    horizontal_padding = 14
+    text_icon_padding = 14
+    frame_width = 2
+
+    gap_size = 6
+    separator_color = frame
+    sort = yes
+
+    font = JetBrains Mono 11
+    line_height = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 30
+    ellipsize = end
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = no
+
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 48
+
+    corner_radius = 10
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[urgency_low]
+    background = "#0a0a0a"
+    foreground = "#888888"
+    frame_color = "#333333"
+    timeout = 4
+
+[urgency_normal]
+    background = "#0a0a0a"
+    foreground = "#e0e0e0"
+    frame_color = "#555555"
+    timeout = 6
+
+[urgency_critical]
+    background = "#141414"
+    foreground = "#ffffff"
+    frame_color = "#ffffff"
+    timeout = 0

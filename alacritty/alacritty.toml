@@ -1,0 +1,99 @@
+[general]
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding = { x = 12, y = 12 }
+dynamic_padding = true
+opacity = 0.95
+decorations = "None"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+size = 12.0
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Regular"
+
+[font.bold]
+family = "JetBrains Mono"
+style = "Bold"
+
+[font.italic]
+family = "JetBrains Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrains Mono"
+style = "Bold Italic"
+
+[cursor.style]
+shape = "Block"
+blinking = "On"
+
+[mouse]
+hide_when_typing = true
+
+# ── Rich Grayscale palette ──
+
+[colors.primary]
+background = "#0a0a0a"
+foreground = "#e0e0e0"
+dim_foreground = "#888888"
+bright_foreground = "#ffffff"
+
+[colors.cursor]
+text = "#0a0a0a"
+cursor = "#e0e0e0"
+
+[colors.vi_mode_cursor]
+text = "#0a0a0a"
+cursor = "#ffffff"
+
+[colors.search.matches]
+foreground = "#0a0a0a"
+background = "#888888"
+
+[colors.search.focused_match]
+foreground = "#0a0a0a"
+background = "#ffffff"
+
+[colors.selection]
+text = "#0a0a0a"
+background = "#555555"
+
+[colors.normal]
+black   = "#1a1a1a"
+red     = "#b0b0b0"
+green   = "#c8c8c8"
+yellow  = "#a0a0a0"
+blue    = "#d0d0d0"
+magenta = "#909090"
+cyan    = "#bbbbbb"
+white   = "#e0e0e0"
+
+[colors.bright]
+black   = "#555555"
+red     = "#cccccc"
+green   = "#e8e8e8"
+yellow  = "#c0c0c0"
+blue    = "#f0f0f0"
+magenta = "#aaaaaa"
+cyan    = "#dddddd"
+white   = "#ffffff"
+
+[colors.dim]
+black   = "#0f0f0f"
+red     = "#707070"
+green   = "#808080"
+yellow  = "#686868"
+blue    = "#909090"
+magenta = "#606060"
+cyan    = "#787878"
+white   = "#888888"

@@ -1,0 +1,85 @@
+{
+    "position": "top",
+    "height": 32,
+    "margin-top": 4,
+    "margin-left": 8,
+    "margin-right": 8,
+    "spacing": 0,
+
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-center": [
+        "clock"
+    ],
+
+    "modules-right": [
+        "hyprland/language",
+        "pulseaudio",
+        "cpu",
+        "battery",
+        "network",
+        "custom/power"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "all-outputs": false,
+        "sort-by-number": true,
+        "active-only": false,
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "EN",
+        "format-ru": "RU"
+    },
+
+    "clock": {
+        "format": "{:%a, %d %b  %H:%M}",
+        "format-alt": "{:%A, %d %B %Y  %H:%M:%S}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "interval": 1
+    },
+
+    "cpu": {
+        "format": "cpu {usage}%",
+        "interval": 5,
+        "tooltip": false
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "bat {capacity}%",
+        "format-charging": "chr {capacity}%",
+        "format-plugged": "ac {capacity}%",
+        "format-full": "full"
+    },
+
+    "network": {
+        "format-wifi": "net {signalStrength}%",
+        "format-ethernet": "eth",
+        "format-disconnected": "off",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr} via {gwaddr}"
+    },
+
+    "pulseaudio": {
+        "format": "vol {volume}%",
+        "format-muted": "mute",
+        "on-click": "pavucontrol"
+    },
+
+    "custom/power": {
+        "format": "off",
+        "on-click": "wlogout",
+        "tooltip": false
+    }
+}

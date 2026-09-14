@@ -1,0 +1,128 @@
+@import "colors.css";
+
+* {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: @text;
+}
+
+tooltip {
+    background-color: @bg-alt;
+    border: 1px solid @border;
+    border-radius: 8px;
+    color: @text;
+}
+
+tooltip label {
+    color: @text;
+}
+
+/* ── Modules ── */
+
+.modules-left,
+.modules-center,
+.modules-right {
+    background-color: @bg;
+    border-radius: 8px;
+    padding: 2px 10px;
+    margin: 2px 0;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ── Workspaces ── */
+
+#workspaces button {
+    padding: 2px 8px;
+    color: @text-muted;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+    min-width: 20px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    color: @text;
+    background: @surface;
+    box-shadow: none;
+}
+
+#workspaces button.active {
+    color: @white;
+    background: @surface-bright;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    color: @white;
+    background: @border;
+}
+
+/* ── Right modules ── */
+
+#clock,
+#battery,
+#cpu,
+#network,
+#pulseaudio,
+#language,
+#custom-power {
+    padding: 0 10px;
+    color: @text-dim;
+    transition: color 0.2s ease;
+}
+
+#clock:hover,
+#battery:hover,
+#cpu:hover,
+#network:hover,
+#pulseaudio:hover,
+#language:hover {
+    color: @text;
+}
+
+#clock {
+    color: @text;
+    font-weight: bold;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @text;
+}
+
+#battery.warning {
+    color: @highlight;
+}
+
+#battery.critical:not(.charging) {
+    color: @white;
+    animation: pulse 1s steps(6) infinite alternate;
+}
+
+@keyframes pulse {
+    to { color: @text-muted; }
+}
+
+#pulseaudio.muted {
+    color: @text-muted;
+}
+
+#network.disconnected {
+    color: @text-muted;
+}
+
+#custom-power {
+    color: @text-muted;
+    padding: 0 12px 0 10px;
+}
+
+#custom-power:hover {
+    color: @white;
+}
