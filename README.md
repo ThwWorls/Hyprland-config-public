@@ -92,7 +92,7 @@ Volume, brightness, and media keys work out of the box.
 
 Hyprland `bind = ...` lines live in `~/.config/hypr/keybinds.conf` only. Pasting them into a shell will error (`readline: no key sequence terminator`).
 
-After `SUPER+SHIFT+S`, pick a region, then annotate in satty (rectangle/brush = red boxes, arrows, text). Save/copy exits.
+After `SUPER+SHIFT+S`, pick a region, annotate in satty (rectangle/brush = red boxes, arrows, text), then press **Enter** — annotated image goes to the clipboard and is saved under `~/Pictures/screenshots`.
 
 `SUPER+SHIFT+R` once: select region and start recording. Again: stop and save MP4.
 
