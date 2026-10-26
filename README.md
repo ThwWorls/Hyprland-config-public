@@ -4,13 +4,16 @@ Minimal monochrome Hyprland rice. Pure grayscale, no color noise.
 
 Public, device-agnostic template. After install, set your monitors and browser.
 
+Repo: https://github.com/ThwWorls/Hyprland-config-public
+
 ## Dependencies
 
 Arch / pacman:
 
 ```bash
 sudo pacman -S hyprland hyprlock hyprpaper hyprshot \
-    waybar dunst wlogout wofi \
+    satty wf-recorder grim slurp wl-clipboard \
+    waybar dunst wlogout wofi libnotify \
     alacritty thunar firefox \
     ttf-jetbrains-mono \
     brightnessctl playerctl \
@@ -18,13 +21,14 @@ sudo pacman -S hyprland hyprlock hyprpaper hyprshot \
     fastfetch jq
 ```
 
-Optional AUR (`yay`): `hyprshot` if not in repos.
+- `satty` — annotate screenshots (rectangles, arrows, brush) after `SUPER+SHIFT+S`
+- `wf-recorder` + `slurp` — region screen recording toggle via `SUPER+SHIFT+R`
 
 ## Install (fresh Hyprland)
 
 ```bash
-git clone https://github.com/YOUR_USER/Hyprland-config.git ~/Documents/Hyprland-config
-cd ~/Documents/Hyprland-config
+git clone https://github.com/ThwWorls/Hyprland-config-public.git ~/Documents/Hyprland-config-public
+cd ~/Documents/Hyprland-config-public
 bash scripts/install.sh
 ```
 
@@ -41,7 +45,9 @@ Logout/login also works.
 
 ## What gets installed
 
-Copied into `~/.config/`: `hypr`, `alacritty`, `waybar`, `wofi`, `wlogout`, `fastfetch`, `dunst`, plus a grayscale Neovim colorscheme and a simple `~/.bashrc`.
+Copied into `~/.config/`: `hypr` (including `hypr/scripts/`), `alacritty`, `waybar`, `wofi`, `wlogout`, `fastfetch`, `dunst`, plus a grayscale Neovim colorscheme and a simple `~/.bashrc`.
+
+Creates `~/Pictures/screenshots` and `~/Videos/recordings`.
 
 Obsidian settings are **optional** and separate:
 
@@ -75,11 +81,20 @@ source = ~/.config/hypr/animations-smooth.conf
 | `SUPER + SHIFT + 1-0` | Move window to workspace |
 | `SUPER + TAB` | Previous workspace |
 | `SUPER + `` ` `` | Scratchpad |
-| `Print` | Screenshot (output) |
-| `SUPER + SHIFT + S` | Screenshot (region) |
+| `Print` | Screenshot whole monitor → clipboard + `~/Pictures/screenshots` |
+| `SUPER + SHIFT + S` | Region screenshot → **satty** (draw/highlight) → save + clipboard |
+| `SUPER + SHIFT + R` | Toggle region **video** recording (`~/Videos/recordings`) |
 | `SUPER + SHIFT + O` | Restart Waybar |
 
 Volume, brightness, and media keys work out of the box.
+
+### Screenshot / record notes
+
+Hyprland `bind = ...` lines live in `~/.config/hypr/keybinds.conf` only. Pasting them into a shell will error (`readline: no key sequence terminator`).
+
+After `SUPER+SHIFT+S`, pick a region, then annotate in satty (rectangle/brush = red boxes, arrows, text). Save/copy exits.
+
+`SUPER+SHIFT+R` once: select region and start recording. Again: stop and save MP4.
 
 ## Pointer speed
 

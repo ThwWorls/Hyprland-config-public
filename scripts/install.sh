@@ -5,9 +5,10 @@ echo "=== Hyprland Grayscale Config - Install ==="
 echo ""
 
 # 1. Install all dependencies
-echo "[1/6] Installing packages..."
+echo "[1/7] Installing packages..."
 sudo pacman -S --needed --noconfirm \
-    hyprland hyprlock hyprpaper \
+    hyprland hyprlock hyprpaper hyprshot \
+    satty wf-recorder grim slurp wl-clipboard libnotify \
     waybar dunst wlogout wofi \
     alacritty thunar \
     ttf-jetbrains-mono \
@@ -18,19 +19,8 @@ sudo pacman -S --needed --noconfirm \
 
 echo ""
 
-# 2. Install AUR packages (if yay is available)
-if command -v yay &> /dev/null; then
-    echo "[2/6] Installing AUR packages..."
-    yay -S --needed --noconfirm hyprshot
-else
-    echo "[2/6] yay not found, skipping AUR packages (hyprshot)"
-    echo "  Install yay first: https://github.com/Jguer/yay"
-fi
-
-echo ""
-
-# 3. Detect script location and config source
-echo "[3/6] Copying configs..."
+# 2. Detect script location and config source
+echo "[2/7] Copying configs..."
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 
@@ -45,10 +35,15 @@ for dir in "${CONFIG_DIRS[@]}"; do
     fi
 done
 
+# Ensure capture/record helper scripts are executable
+if [ -d "$HOME/.config/hypr/scripts" ]; then
+    chmod +x "$HOME/.config/hypr/scripts/"*.sh 2>/dev/null || true
+fi
+
 echo ""
 
-# 4. Setup Neovim grayscale
-echo "[4/6] Setting up Neovim grayscale colorscheme..."
+# 3. Setup Neovim grayscale
+echo "[3/7] Setting up Neovim grayscale colorscheme..."
 mkdir -p ~/.config/nvim/colors ~/.config/nvim/after/plugin
 
 if [ -d "$REPO_DIR/nvim" ]; then
@@ -65,8 +60,8 @@ fi
 
 echo ""
 
-# 5. Setup bashrc
-echo "[5/7] Setting up bashrc..."
+# 4. Setup bashrc
+echo "[4/7] Setting up bashrc..."
 if [ -f "$REPO_DIR/bashrc" ]; then
     cp "$REPO_DIR/bashrc" ~/.bashrc
     echo "  -> bashrc installed (fastfetch on terminal open)"
@@ -74,9 +69,9 @@ fi
 
 echo ""
 
-# 6. Generate wallpaper and create directories
-echo "[6/7] Setting up wallpaper..."
-mkdir -p ~/Pictures/wallpaper ~/Pictures/screenshots
+# 5. Generate wallpaper and create directories
+echo "[5/7] Setting up wallpaper + capture folders..."
+mkdir -p ~/Pictures/wallpaper ~/Pictures/screenshots ~/Videos/recordings
 chmod +x "$REPO_DIR/scripts/wallpaper-random.sh" 2>/dev/null || true
 
 if [ -f "$REPO_DIR/scripts/generate-wallpaper.py" ]; then
@@ -89,11 +84,11 @@ fi
 
 echo ""
 
-# 7. Verify installation
-echo "[7/7] Verifying..."
+# 6. Verify installation
+echo "[6/7] Verifying..."
 MISSING=""
-for cmd in alacritty waybar dunst hyprlock hyprpaper wofi; do
-    if ! command -v $cmd &> /dev/null; then
+for cmd in alacritty waybar dunst hyprlock hyprpaper wofi hyprshot satty wf-recorder grim slurp wl-copy; do
+    if ! command -v "$cmd" &> /dev/null; then
         MISSING="$MISSING $cmd"
     fi
 done
@@ -112,11 +107,8 @@ echo "Now either:"
 echo "  1. Log out and log back in"
 echo "  2. Or run: bash $(dirname "$0")/fix-all.sh"
 echo ""
-echo "Keybinds:"
-echo "  SUPER+Q / SUPER+Enter  -> Terminal (Alacritty)"
-echo "  SUPER+R                -> App launcher (Wofi)"
-echo "  SUPER+B                -> Browser"
-echo "  SUPER+E                -> File manager"
-echo "  SUPER+C                -> Close window"
-echo "  SUPER+1-0              -> Workspaces"
+echo "Capture keybinds:"
+echo "  Print                 -> full monitor screenshot"
+echo "  SUPER+SHIFT+S         -> region + annotate (satty)"
+echo "  SUPER+SHIFT+R         -> toggle region video record"
 echo ""
